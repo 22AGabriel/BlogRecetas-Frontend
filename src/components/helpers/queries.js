@@ -40,3 +40,19 @@ export const crearRecetaAPI = async(receta) => {
         return false;
     }
 }
+
+export const editarRecetaAPI = async(id, receta) => {
+    try{
+        const respuesta = await fetch(URL+`/${id}`, {
+            method: "PUT",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(receta)
+        });
+        return respuesta;
+    }catch(error){
+        console.log(error);
+        return false;
+    }
+}

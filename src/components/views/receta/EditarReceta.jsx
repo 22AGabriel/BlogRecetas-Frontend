@@ -1,12 +1,37 @@
+import { useEffect } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import { editarRecetaAPI, obtenerRecetaAPI } from "../../helpers/queries";
 
 const EditarReceta = () => {
-  const {register, handleSubmit, formState:{errors}} = useForm();
+  const {register, handleSubmit, formState:{errors}, setValue} = useForm();
+  const {id} = useParams();
+  const navegation = useNavigate();
+
+  useEffect(() => {
+    obtenerRecetaAPI(id).then((respuesta) => {
+      if(respuesta.status === 200){
+        setValue('nombreReceta', respuesta.dato.nombreReceta)
+        setValue('ingredientes', respuesta.dato.ingredientes)
+        setValue('preparacion', respuesta.dato.preparacion)
+        setValue('imagen', respuesta.dato.imagen)
+        setValue('categoria', respuesta.dato.categoria)
+      }
+    })
+  }, [])
 
   const onSubmit = (data) => {
-    console.log(data)
-  }
+    editarRecetaAPI(id, data).then((respuesta) => {
+      if(respuesta.status === 200){
+        Swal.fire('Receta modificada', 'La receta fue modificada con éxito', 'success')
+        navegation('/administrar')
+      } else {
+        Swal.fire('Occurió un error', 'La receta no pudo ser modificada, intenta nuevamente en unos minutos', 'error')
+      }
+    })
+  };
 
   return (
     <Container className="my-5 mainSection">
