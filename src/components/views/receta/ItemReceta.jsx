@@ -1,8 +1,36 @@
 import { Accordion, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { borrarRecetaAPI, consultarAPI } from "../../helpers/queries";
 
-const ItemReceta = ({receta}) => {
+const ItemReceta = ({receta, setRecetas}) => {
     const {id, nombreReceta, imagen, ingredientes, preparacion, categoria} = {...receta}
+
+    const borrarProducto = () => {
+      Swal.fire({
+        title: 'Eliminar Receta',
+        text: `¿Estás seguro de eliminar ${nombreReceta}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#198754',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Borrar',
+        CancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed){
+          borrarRecetaAPI(id).then((respuesta) => {
+            if(respuesta.status === 200){
+              Swal.fire('Receta eliminada', "La receta fue correctamente eliminada", 'success')
+              consultarAPI().then((listaRecetas) => {
+                setRecetas(listaRecetas)
+              })
+            } else {
+              Swal.fire('Ocurrió un error', 'Inténtelo nuevamente en unos minutos', 'error')
+            }
+          })
+        }
+      })
+    }
 
   return (
     <tr>
@@ -37,7 +65,7 @@ const ItemReceta = ({receta}) => {
           <Link className="btn bg-warning me-1" to={`/administrar/editar/${id}`}>
             <i className="bi bi-pencil-square"></i>
           </Link>
-          <Button variant="danger">
+          <Button variant="danger" onClick={borrarProducto}>
             <i className="bi bi-trash text-dark"></i>
           </Button>
         </div>
