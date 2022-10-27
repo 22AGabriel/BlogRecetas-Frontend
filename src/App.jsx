@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Inicio from './components/views/Inicio';
 import Administrador from './components/views/Administrador';
 import DetalleReceta from './components/views/DetalleReceta';
+import AgregarReceta from './components/views/receta/AgregarReceta';
+import EditarReceta from './components/views/receta/EditarReceta';
 import Error404 from './components/views/Error404';
 import NavBar from './components/common/NavBar';
 import Footer from './components/common/Footer';
@@ -17,6 +19,8 @@ function App() {
         <Route exact path='/' element={<Inicio/>} />
         <Route exact path='/administrar' element={<Administrador/>} />
         <Route exact path='/detalle' element={<DetalleReceta/>} />
+        <Route exact path='/administrar/agregar' element={<AgregarReceta/>}/>
+        <Route exact path='/administrar/editar:id' element={<EditarReceta/>}/>
         <Route exact path='*' element={<Error404/>} />
       </Routes>
       <Footer/>
