@@ -34,7 +34,7 @@ const ItemReceta = ({receta}) => {
       <td>{categoria}</td>
       <td>
         <div className="d-flex">
-          <Link className="btn bg-warning me-1" to={'/administrar/editar:id'}>
+          <Link className="btn bg-warning me-1" to={`/administrar/editar/${id}`}>
             <i className="bi bi-pencil-square"></i>
           </Link>
           <Button variant="danger">
