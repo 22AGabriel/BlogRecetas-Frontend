@@ -18,10 +18,30 @@
     height: 400px;
 }
 
+.collapse{
+    min-width: 450px;
+  }
+  
+  .accordion-button:not(.collapsed){
+    background-color: white;
+    color: black;
+  }
+  
+  .accordion-button:not(.collapsed)::after{
+    filter: invert(50%);
+  }
+  
+  .accordion-button:focus{
+    box-shadow: inherit;
+  }
+
 @media all and (max-width: 767px){
     .imgDetalle{
       object-fit: cover;
       height: 200px;
+    }
+    .collapse{
+        min-width: 350px;
     }
 }
 
