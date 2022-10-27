@@ -9,7 +9,6 @@ const DetalleReceta = () => {
 
   useEffect(() => {
     obtenerRecetaAPI(id).then((respuesta) => {
-      console.log(respuesta)
       if(respuesta.status === 200){
         setReceta(respuesta.dato)
       }

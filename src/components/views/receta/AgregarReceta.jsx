@@ -1,11 +1,23 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import { crearRecetaAPI } from "../../helpers/queries";
+import { useNavigate } from "react-router-dom";
 
 const AgregarReceta = () => {
-  const {register, handleSubmit, formState:{errors}} = useForm();
+  const {register, handleSubmit, formState:{errors}, reset} = useForm();
+  const navegacion = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data)
+    crearRecetaAPI(data).then((respuesta) => {
+      if(respuesta.status === 201){
+        Swal.fire('Receta creada', 'La receta fue cargada correctamente', 'success')
+        reset();
+        navegacion('/administrar')
+      } else {
+        Swal.fire('Ocurrió un error', 'Inténtelo nuevamente en unos minutos', 'error')
+      }
+    })
   }
 
   return (
