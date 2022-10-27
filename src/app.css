@@ -17,6 +17,10 @@
   object-fit: cover;
   height: 400px;
 }
+.imgGrilla {
+  object-fit: cover;
+  height: 150px;
+}
 .tamaño {
   max-width: 150px;
 }
@@ -43,6 +47,10 @@
     object-fit: cover;
     height: 200px;
   }
+  .imgGrilla {
+    object-fit: cover;
+    height: 150px;
+  }
   .collapse {
     min-width: 350px;
   }
@@ -52,5 +60,9 @@
   .imgDetalle {
     object-fit: cover;
     height: 300px;
+  }
+  .imgGrilla {
+    object-fit: cover;
+    height: 100px;
   }
 }
