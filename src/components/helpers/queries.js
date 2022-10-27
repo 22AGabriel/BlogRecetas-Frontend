@@ -10,3 +10,17 @@ export const consultarAPI = async() => {
         return false;
     }
 }
+
+export const obtenerRecetaAPI = async(id) => {
+    try{
+        const respuesta = await fetch(URL+`/${id}`);
+        const receta = {
+            dato: await respuesta.json(),
+            status: respuesta.status
+        }
+        return receta;
+    }catch(error){
+        console.log(error);
+        return false;
+    }
+}
