@@ -18,6 +18,12 @@ const NavBar = () => {
               <NavLink to="/administrar" className={"nav-item nav-link"}>
                 Administrador
               </NavLink>
+              <NavLink to="/administrar/registrar" className={"nav-item nav-link"}>
+                Registrar
+              </NavLink>
+              <NavLink to="/administrar/login" className={"nav-item nav-link"}>
+                Iniciar sesión
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>
