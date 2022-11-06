@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { borrarRecetaAPI, consultarAPI } from "../../helpers/queries";
 
 const ItemReceta = ({receta, setRecetas}) => {
-    const {id, nombreReceta, imagen, ingredientes, preparacion, categoria} = {...receta}
+    const {_id, nombreReceta, imagen, ingredientes, preparacion, categoria} = {...receta}
 
     const borrarProducto = () => {
       Swal.fire({
@@ -18,7 +18,7 @@ const ItemReceta = ({receta, setRecetas}) => {
         CancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed){
-          borrarRecetaAPI(id).then((respuesta) => {
+          borrarRecetaAPI(_id).then((respuesta) => {
             if(respuesta.status === 200){
               Swal.fire('Receta eliminada', "La receta fue correctamente eliminada", 'success')
               consultarAPI().then((listaRecetas) => {
@@ -34,7 +34,7 @@ const ItemReceta = ({receta, setRecetas}) => {
 
   return (
     <tr>
-      <td>{id}</td>
+      <td className="text-truncate tamaño">{_id}</td>
       <td>{nombreReceta}</td>
       <td>
         <Accordion defaultActiveKey="0">
@@ -62,7 +62,7 @@ const ItemReceta = ({receta, setRecetas}) => {
       <td>{categoria}</td>
       <td>
         <div className="d-flex">
-          <Link className="btn bg-warning me-1" to={`/administrar/editar/${id}`}>
+          <Link className="btn bg-warning me-1" to={`/administrar/editar/${_id}`}>
             <i className="bi bi-pencil-square"></i>
           </Link>
           <Button variant="danger" onClick={borrarProducto}>
