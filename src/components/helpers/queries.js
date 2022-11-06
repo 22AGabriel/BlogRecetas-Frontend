@@ -85,3 +85,25 @@ export const crearUsuarioAPI = async(usuario) => {
         return false;
     }
 }
+
+export const login = async(usuario) => {
+    try{
+        const respuesta = await fetch(URLusuarios);
+        const listaUsuarios = await respuesta.json();
+        const usuarioBuscado = listaUsuarios.find((itemUsuario)=> itemUsuario.email === usuario.email )
+        if(usuarioBuscado){
+            // console.log('email encontrado')
+            if(usuarioBuscado.password === usuario.password){
+              return usuarioBuscado
+            } else {
+              return false
+            }
+          }else{
+            // console.log('el mail no existe')
+            return false
+          }
+    }catch(error){
+        console.log(error);
+        return false;
+    }
+}
