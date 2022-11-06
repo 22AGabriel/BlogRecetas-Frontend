@@ -28,7 +28,7 @@ const EditarReceta = () => {
         Swal.fire('Receta modificada', 'La receta fue modificada con éxito', 'success')
         navegation('/administrar')
       } else {
-        Swal.fire('Occurió un error', 'La receta no pudo ser modificada, intenta nuevamente en unos minutos', 'error')
+        Swal.fire('Ocurrió un error', 'La receta no pudo ser modificada, intenta nuevamente en unos minutos', 'error')
       }
     })
   };

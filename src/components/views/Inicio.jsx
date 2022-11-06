@@ -19,7 +19,7 @@ const Inicio = () => {
             </div>
             <Row>
               {
-                recetas.map((receta) => (<CardReceta key={receta.id} receta={receta}></CardReceta>))
+                recetas.map((receta) => (<CardReceta key={receta._id} receta={receta}></CardReceta>))
               }
             </Row>
         </Container>
