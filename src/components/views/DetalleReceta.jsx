@@ -22,7 +22,7 @@ const DetalleReceta = () => {
         <p> - </p>
         <Link to={"*"} className="text-decoration-none mx-2">{receta.categoria}s</Link>
         <p> - </p>
-        <Link to={`/detalle/${id}`} className="mx-2">Nombre de receta</Link>
+        <Link to={`/detalle/${id}`} className="mx-2">{receta.nombreReceta}</Link>
       </Breadcrumb>
       <div className="text-center">
         <h1>{receta.nombreReceta}</h1>
