@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { login } from "../helpers/queries";
 
-const Login = () => {
+const Login = ({setUsuarioIniciado}) => {
   const {register, handleSubmit, setError, formState: { errors }} = useForm();
   const navigate = useNavigate();
 
@@ -12,7 +12,8 @@ const Login = () => {
     login(data).then((respuesta) => {
         if(respuesta){
             localStorage.setItem("usuarioLogueado", JSON.stringify(respuesta));
-            navigate("/administrar");
+            setUsuarioIniciado(respuesta)
+            navigate("/");
         } else {
             setError("email", {message: "Email o contraseña incorrecta, intenta nuevamente"})
         }

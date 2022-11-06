@@ -1,7 +1,15 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({ usuarioIniciado, setUsuarioIniciado }) => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("usuarioLogueado");
+    setUsuarioIniciado({});
+    navigate("/");
+  };
+
   return (
     <header>
       <Navbar bg="success" variant="dark" expand="lg">
@@ -15,18 +23,23 @@ const NavBar = () => {
               <NavLink to="/" className={"nav-item nav-link"}>
                 Inicio
               </NavLink>
-              <NavLink to="/administrar" className={"nav-item nav-link"}>
-                Administrador
-              </NavLink>
-              <NavLink to="/administrar/registrar" className={"nav-item nav-link"}>
-                Registrar
-              </NavLink>
-              <NavLink to="/administrar/login" className={"nav-item nav-link"}>
-                Iniciar sesión
-              </NavLink>
-              <Button variant="dark" className={"me-auto px-2"}>
-                Cerrar sesión
-              </Button>
+              {usuarioIniciado.email ? (
+                <>
+                  <NavLink to="/administrar" className={"nav-item nav-link"}>
+                    Administrador
+                  </NavLink>
+                  <NavLink to="/administrar/registrar" className={"nav-item nav-link"}>
+                    Registrar
+                  </NavLink>
+                  <Button variant="dark" className={"me-auto px-2"} onClick={logout}>
+                    Cerrar sesión
+                  </Button>
+                </>
+              ) : (
+                <NavLink to="/administrar/login" className={"btn bg-light text-dark border-0 me-auto px-2"}>
+                  Iniciar sesión
+                </NavLink>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
