@@ -1,4 +1,4 @@
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
@@ -24,6 +24,9 @@ const NavBar = () => {
               <NavLink to="/administrar/login" className={"nav-item nav-link"}>
                 Iniciar sesión
               </NavLink>
+              <Button variant="dark" className={"me-auto px-2"}>
+                Cerrar sesión
+              </Button>
             </Nav>
           </Navbar.Collapse>
         </Container>
