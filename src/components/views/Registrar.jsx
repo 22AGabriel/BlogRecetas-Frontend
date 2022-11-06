@@ -1,14 +1,26 @@
 import React from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { crearUsuarioAPI } from "../helpers/queries";
 
 const Registrar = () => {
   const {register, handleSubmit, formState: { errors }, watch, reset} = useForm();
   const password = watch('password');
+  const navegacion = useNavigate();
 
   const onSubmit = (data) => {
     delete data.confirmPassword;
-    console.log(data)
+    crearUsuarioAPI(data).then((respuesta) => {
+        if(respuesta.status === 201){
+          Swal.fire('Usuario creado', '¡El registro fue realizado correctamente!', 'success');
+          reset();
+          navegacion('/administrar')
+        } else {
+          Swal.fire('Ocurrió un error', 'Inténtelo nuevamente en unos minutos', 'error')
+        }
+      })
   }
     
   return (
@@ -103,7 +115,7 @@ const Registrar = () => {
             })}
             ></Form.Control>
             <Form.Text className="text-danger">
-              {errors.rePassword?.message}
+              {errors.confirmPassword?.message}
             </Form.Text>
           </Form.Group>
           <Button className="w-100" variant="success" type="submit">
