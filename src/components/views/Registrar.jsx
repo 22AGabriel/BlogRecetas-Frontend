@@ -30,7 +30,7 @@ const Registrar = () => {
         <hr />
       </div>
       <div className="d-flex justify-content-center">
-        <Form onSubmit={handleSubmit(onSubmit)} className="w-form">
+        <Form noValidate onSubmit={handleSubmit(onSubmit)} className="w-form">
         <Form.Group className="mb-2">
             <Form.Label>Nombre</Form.Label>
             <Form.Control 
