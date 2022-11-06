@@ -36,7 +36,7 @@ const EditarReceta = () => {
   return (
     <Container className="my-5 mainSection">
       <div className="text-center">
-        <h1 className="display-4">Agregar receta</h1>
+        <h1 className="display-4">Editar receta</h1>
         <hr />
       </div>
       <Form noValidate onSubmit={handleSubmit(onSubmit)}>
